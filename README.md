@@ -74,4 +74,5 @@ the styles leads to the possibility of infinite loops, as in the following simpl
 Further information
 -------------------
 
-Further information is available here http://cjwainwright.co.uk/webdev/cssconditionals/
+Further information is available here http://cjwainwright.co.uk/webdev/cssconditionals/  
+A demo is available here http://cjwainwright.co.uk/webdev/cssconditionals/sample/
