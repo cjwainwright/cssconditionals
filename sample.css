@@ -1,0 +1,22 @@
+.menu {
+    width: 80%;
+}
+
+.menu .menu-item {
+    display: inline-block;
+}
+
+.menu.where-width-lt-500 .menu-item {
+    display: block;
+}
+
+.menu-item.where-width-gt-300 {
+    background-color: red;
+}
+
+/*Some styles to make it look nicer*/
+.menu-item {
+    background-color: #aea;
+    padding: 18px;
+    border: solid 1px black;
+}
