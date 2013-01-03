@@ -1,5 +1,5 @@
-.menu {
-    width: 80%;
+.column {
+    float: left;
 }
 
 .menu .menu-item {
@@ -10,7 +10,7 @@
     display: block;
 }
 
-.menu-item.where-width-gt-300 {
+.menu-item.where-width-lt-50 {
     background-color: red;
 }
 

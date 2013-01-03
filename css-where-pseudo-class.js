@@ -21,9 +21,8 @@ var DOM = {
     }
 }
 
-// Mock function to process the stylesheet, for this return what would be the result of doing:
-// Parse stylesheet
-// Replace each :where(cond) with a unique class name e.g. .where-cond
+// Function to process the stylesheet
+// Assumes pseudo :where() classes have already been re-written as standard classes in the form .where-style-comparator-value, e.g. .where-width-lt-500px
 // For each condition, build a lookup (conditions) from this class name to the function which evaluates the condition on an element
 // Store a lookup (rules) to these conditions from all CSS selectors which select the elements that need this condition applying
 function parseStylesheet() {

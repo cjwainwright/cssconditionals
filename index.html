@@ -5,19 +5,26 @@
         <title>CSS Where Pseudo Class</title>
         <link href="sample.css" type="text/css" rel="stylesheet">
         <script type="text/javascript" src="css-where-pseudo-class.js"></script>
-        <script type="text/javascript">
-        </script>
     </head>
     <body>
-        <div class="menu">
-            <div class="menu-item">Item 1</div>
-            <div class="menu-item">Item 2</div>
-            <div class="menu-item">Item 3</div>
-            <div class="menu-item">Item 4</div>
-            <div class="menu-item">Item 5</div>
-            <div class="menu-item">Item 6</div>
+        <div class="column" style="width: 70%;">
+            <div class="menu">
+                <div class="menu-item">Item 1</div>
+                <div class="menu-item">Item 2 is long</div>
+                <div class="menu-item">Item 3 is longer</div>
+                <div class="menu-item">Item 4</div>
+                <div class="menu-item">Item 5</div>
+            </div>
         </div>
-
-        &lt;-- Try resizing this to switch the condition on/off
+        <div class="column" style="width: 30%;">
+            <div class="menu">
+                <div class="menu-item">Other Item 1</div>
+                <div class="menu-item">Other Item 2</div>
+                <div class="menu-item">Other Item 3</div>
+            </div>
+        </div>
+        <div>
+            Try resizing this to see how these two menu components, both styled with same CSS respond to the changing widths
+        </div>
     </body>
 </html>
