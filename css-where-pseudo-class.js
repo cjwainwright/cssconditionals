@@ -85,15 +85,26 @@ function parseStylesheet() {
         do
         {
             var matched = false;
-            selector = selector.replace(/\.where-([^\s]*)/, function(match, condition, index, str){ //TODO - need to handle other pseudo classes/elements after this one, currently assuming this is the last thing before the space
+            selector = selector.replace(/\.where-([^\s\.\:\#]*)/, function(match, condition, index, str){
                 matched = true;
-                var selector = str.substr(0, index); // everything up to the where class. 
                 var conditionClass = 'where-' + condition;
+                
                 var data = conditions[conditionClass];
                 if(data == null) {
                     conditions[conditionClass] = data = {match: createMatchMethod(condition), selectors: []};
                 }
-                data.selectors.push(selector);
+
+                var start = str.substr(0, index); // everything up to the where class. 
+                var remaining = str.substr(index + conditionClass.length + 1); // everything after the where class
+                if((remaining.length != 0) &&
+                   (remaining[0] != ' '))
+                {
+                    // we haven't finished at this level
+                    // TODO - handle the possibility of further where classes at this level
+                    start += remaining.split(' ')[0];
+                }
+
+                data.selectors.push(start);
                 
                 return ''; //remove the where class from the selector before looking for further ones
             });
