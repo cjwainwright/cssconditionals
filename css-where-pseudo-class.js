@@ -1,3 +1,26 @@
+// DOM selector, returns as array so can forEach etc.
+function $(selector) {
+    return Array.apply(null, document.querySelectorAll(selector));
+}
+
+// Utility DOM functions
+var DOM = {
+    toggleClass: function (el, className, on) {
+        var currentClassName = el.className;
+        var newClassName = currentClassName.replace(new RegExp('\\b' + className + '\\b', 'g'), '').replace(/^\s+/g, '').replace(/\s+$/g, '');
+        if(on) {
+            if(newClassName) {
+                newClassName += ' ';
+            }
+            newClassName += className;
+        }
+        
+        if(newClassName != currentClassName) {
+            el.className = newClassName;
+        }
+    }
+}
+
 // Mock function to process the stylesheet, for this return what would be the result of doing:
 // Parse stylesheet
 // Replace each :where(cond) with a unique class name e.g. .where-cond
@@ -73,12 +96,16 @@ function parseStylesheet() {
 
 // Processor to update class names on specified elements according to whether the conditions are met
 function processor(conditions) {
+
     return function process() {
-        $.each(conditions, function(conditionClass, data){
-            $(data.selectors.join(', ')).each(function(i, el){
-                $(el).toggleClass(conditionClass, data.match(el));
-            });
-        });
+        for(var conditionClass in conditions) {
+            if(conditions.hasOwnProperty(conditionClass)) {
+                var data = conditions[conditionClass];
+                $(data.selectors.join(', ')).forEach(function(el){
+                    DOM.toggleClass(el, conditionClass, data.match(el));
+                });
+            }
+        }
     }
 }
     
