@@ -109,4 +109,4 @@ function processor(conditions) {
 }
     
 // Really need to listen for changes on the element, but for now we'll just regularly update
-setInterval(processor(parseStylesheet()), 1000);
+setInterval(processor(parseStylesheet()), 400);

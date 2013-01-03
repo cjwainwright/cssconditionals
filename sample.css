@@ -1,6 +1,9 @@
-.column {
-    float: left;
+body {
+    font-family: arial, helvetica, sans-serif;
+    font-size: 12px;
 }
+
+/*Menu styles*/
 
 .menu .menu-item {
     display: inline-block;
@@ -10,13 +13,78 @@
     display: block;
 }
 
-.menu-item.where-width-lt-50 {
-    background-color: red;
-}
-
-/*Some styles to make it look nicer*/
 .menu-item {
     background-color: #aea;
-    padding: 18px;
+    padding: 5px;
     border: solid 1px black;
+    text-decoration: none;
+    color: black;
+}
+
+.menu-item-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color: black;
+    margin-right: 10px;
+}
+
+/*Hide the icon when the menu is below 200 wide*/
+.menu.where-width-lt-200 .menu-item-icon {
+    display: none;
+}
+
+/*Gallery styles*/
+.gallery {
+    display: block;
+}
+
+.gallery-viewport {
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+
+.gallery-img {
+    display: inline-block;
+    width: 33%;
+    padding-bottom: 33%;
+    background-color: #CCC;
+}
+
+.gallery.where-width-lt-300px .gallery-img{
+    width: 100%;
+    padding-bottom: 100%;
+}
+
+/*Form styles*/
+.form {
+    display: inline-block;
+}
+
+.form-info {
+    font-size: 0.9em;
+    color: #999;
+}
+
+.form.where-width-lt-400 .form-info {
+    display: none;
+}
+
+.form textarea {
+    width: 450px;
+}
+
+/*Make the font size increase if we increase the height!*/
+.form.where-height-gt-150px textarea {
+    font-size: 2em;
+}
+
+.form.where-height-gt-300px textarea {
+    font-size: 3em;
+}
+
+.form-submit button{
+    float: right;
 }
