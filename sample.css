@@ -9,7 +9,7 @@ body {
     display: inline-block;
 }
 
-.menu.where-width-lt-500 .menu-item {
+.menu.where-width-lt-500px .menu-item {
     display: block;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 /*Hide the icon when the menu is below 200 wide*/
-.menu.where-width-lt-200 .menu-item-icon {
+.menu.where-width-lt-200px .menu-item-icon {
     display: none;
 }
 
@@ -68,7 +68,7 @@ body {
     color: #999;
 }
 
-.form.where-width-lt-400 .form-info {
+.form.where-width-lt-400px .form-info {
     display: none;
 }
 

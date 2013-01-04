@@ -82,34 +82,39 @@ function parseStylesheet() {
     
     // process selector, building up conditions and rules and adding to returned data
     function processSelector(selector) {
-        do
-        {
-            var matched = false;
-            selector = selector.replace(/\.where-([^\s\.\:\#]*)/, function(match, condition, index, str){
-                matched = true;
+        
+        // build up an array of all conditions at each level of the selector
+        var conditionLevels = [];
+
+        // map each selector level to one without conditions
+        var selectorLevels = selector.split(' ').map(function (level, i) {
+            var conditions = [];
+            conditionLevels.push(conditions);
+
+            // remove the conditions from each level, storing the conditions as we go
+            return level.replace(/\.where-([^\s\.\:\#]*)/g, function(match, condition, index, str) {
+                conditions.push(condition);
+                return '';
+            });
+        });
+        
+        // combine information
+        selectorLevels.forEach(function(level, i){
+            // create the selector up to this level
+            var selector = selectorLevels.slice(0, i + 1).join(' ');
+            
+            // loop through all conditions at this level and get/create the match method for this condition
+            conditionLevels[i].forEach(function(condition){
                 var conditionClass = 'where-' + condition;
-                
                 var data = conditions[conditionClass];
                 if(data == null) {
                     conditions[conditionClass] = data = {match: createMatchMethod(condition), selectors: []};
                 }
-
-                var start = str.substr(0, index); // everything up to the where class. 
-                var remaining = str.substr(index + conditionClass.length + 1); // everything after the where class
-                if((remaining.length != 0) &&
-                   (remaining[0] != ' '))
-                {
-                    // we haven't finished at this level
-                    // TODO - handle the possibility of further where classes at this level
-                    start += remaining.split(' ')[0];
-                }
-
-                data.selectors.push(start);
                 
-                return ''; //remove the where class from the selector before looking for further ones
+                // add the current selector (up to this level) to the list of selectors for this condition
+                data.selectors.push(selector);
             });
-        }
-        while(matched);
+        });
     }
     
     // iterate through stylesheets processing each selector
